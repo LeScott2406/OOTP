@@ -1,17 +1,21 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import streamlit as st
 import pandas as pd
+import requests
+from io import BytesIO
 
-# Load the Excel file from the URL
+# URL for the Excel file
 data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/MLB.xlsx'
 
-# Read the data into a pandas DataFrame
-df = pd.read_excel(data_url)
+# Fetch the file from GitHub using requests
+response = requests.get(data_url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Read the Excel data into a pandas DataFrame from the response content
+    df = pd.read_excel(BytesIO(response.content))
+else:
+    st.error("Failed to fetch the data file. Please check the URL and try again.")
+    df = pd.DataFrame()  # Create an empty DataFrame as a fallback
 
 # Define the function to categorize players based on position
 def determine_player_type(pos):
@@ -51,4 +55,3 @@ elif player_type == "Hitter":
     # Filter data to show only Hitters
     hitter_data = df[df['Player Type'] == 'Hitter'][hitter_columns]
     st.write(hitter_data)
-
