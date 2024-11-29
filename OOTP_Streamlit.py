@@ -38,6 +38,15 @@ with st.sidebar:
     org_options = df['ORG'].unique().tolist()
     org_filter = st.selectbox("Select Organization", org_options)
     
+    # Filter by POS (Position) - multi-select based on Player Type
+    if player_type == "Pitcher":
+        pos_options = ['SP', 'RP', 'CL']  # Only pitcher positions
+    else:
+        pos_options = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']  # Only hitter positions
+    
+    # Display POS filter with the positions for the selected player type
+    pos_filter = st.multiselect("Select Position", pos_options)
+    
     # Filter by Age
     age_filter = st.slider("Select Age Range", min_value=16, max_value=40, value=(16, 40))
 
@@ -50,6 +59,10 @@ if org_filter:
 
 # Apply the Age filter
 filtered_df = filtered_df[filtered_df['Age'].between(age_filter[0], age_filter[1])]
+
+# Apply the POS filter if positions are selected
+if pos_filter:
+    filtered_df = filtered_df[filtered_df['POS'].isin(pos_filter)]
 
 # Filtered data display
 if player_type == "Pitcher":
