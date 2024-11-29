@@ -32,11 +32,9 @@ df['Player Type'] = df['POS'].apply(determine_player_type)
 # Streamlit app
 st.title("Baseball Player Stats Analyzer")
 
-# Create columns layout for filters (left-aligned filters)
-col1, col2 = st.columns([1, 3])  # Filter column on the left (1) and main content column on the right (3)
-
-# Player Type selection
-with col1:  # Positioning filters in the first column (left side)
+# Create the sidebar for the filters (left side)
+with st.sidebar:
+    # Player Type selection
     player_type = st.selectbox("Select Player Type", ["Pitcher", "Hitter"])
 
     # Filter by ORG (Organization)
