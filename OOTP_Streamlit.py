@@ -40,11 +40,12 @@ with st.sidebar:
     
     # Filter by POS (Position) - multi-select based on Player Type
     if player_type == "Pitcher":
-        pos_options = ['SP', 'RP', 'CL']
+        pos_options = ['SP', 'RP', 'CL']  # Only pitcher positions
     else:
-        pos_options = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']
+        pos_options = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']  # Only hitter positions
     
-    pos_filter = st.multiselect("Select Position", pos_options, default=pos_options)
+    # Display POS filter with the positions for the selected player type
+    pos_filter = st.multiselect("Select Position", pos_options)
     
     # Filter by Age
     age_filter = st.slider("Select Age Range", min_value=16, max_value=40, value=(16, 40))
