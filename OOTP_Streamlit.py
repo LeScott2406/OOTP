@@ -32,19 +32,23 @@ df['Player Type'] = df['POS'].apply(determine_player_type)
 # Streamlit app
 st.title("Baseball Player Stats Analyzer")
 
+# Create columns layout for filters (left-aligned filters)
+col1, col2 = st.columns([1, 3])  # Filter column on the left (1) and main content column on the right (3)
+
 # Player Type selection
-player_type = st.selectbox("Select Player Type", ["Pitcher", "Hitter"])
+with col1:  # Positioning filters in the first column (left side)
+    player_type = st.selectbox("Select Player Type", ["Pitcher", "Hitter"])
 
-# Filter by ORG (Organization)
-org_options = ['All'] + df['ORG'].unique().tolist()
-org_filter = st.selectbox("Select Organization", org_options)
+    # Filter by ORG (Organization)
+    org_options = ['All'] + df['ORG'].unique().tolist()
+    org_filter = st.selectbox("Select Organization", org_options)
 
-# Filter by Age
-age_filter = st.slider("Select Age Range", min_value=16, max_value=40, value=(16, 40))
+    # Filter by Age
+    age_filter = st.slider("Select Age Range", min_value=16, max_value=40, value=(16, 40))
 
-# Filter by POS (Position)
-pos_options = ['All'] + df['POS'].unique().tolist()
-pos_filter = st.selectbox("Select Position", pos_options)
+    # Filter by POS (Position)
+    pos_options = ['All'] + df['POS'].unique().tolist()
+    pos_filter = st.selectbox("Select Position", pos_options)
 
 # Filter the DataFrame based on Player Type
 filtered_df = df[df['Player Type'] == player_type]
