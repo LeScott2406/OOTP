@@ -72,7 +72,7 @@ if player_type == "Pitcher":
 elif player_type == "Hitter":
     st.write("Hitter Information:")
     hitter_columns = ['POS', 'Name', 'ORG', 'Lev', 'Age', 'B', 'T', 'OVR', 'POT', 'WE', 'INT', 'Hit Ability', 
-                      'Hit Potential', 'Hit % Developed', 'Exit Velocity', 'EV Potential', 'Defence']
+                      'Hit Potential', 'Hit % Developed', 'Exit Velocity', 'EV Potential', 'Defence]
     
     hitter_data = filtered_df[hitter_columns]
     st.dataframe(hitter_data, use_container_width=True)  # Expands the table to fit the container width
