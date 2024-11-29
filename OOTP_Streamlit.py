@@ -1,17 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
-
 import streamlit as st
 import pandas as pd
 
-# Load the Excel file from the URL
-data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/MLB.xlsx'
+# Caching function to load the data only once
+@st.cache_data
+def load_data():
+    # Load the Excel file from the URL
+    data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/MLB.xlsx'
+    # Read the data into a pandas DataFrame
+    return pd.read_excel(data_url)
 
-# Read the data into a pandas DataFrame
-df = pd.read_excel(data_url)
+# Load the data (this will be cached)
+df = load_data()
 
 # Define the function to categorize players based on position
 def determine_player_type(pos):
@@ -51,4 +53,3 @@ elif player_type == "Hitter":
     # Filter data to show only Hitters
     hitter_data = df[df['Player Type'] == 'Hitter'][hitter_columns]
     st.write(hitter_data)
-
