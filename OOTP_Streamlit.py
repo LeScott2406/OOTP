@@ -24,26 +24,47 @@ df['Player Type'] = df['POS'].apply(determine_player_type)
 # Streamlit app
 st.title("Baseball Player Stats Analyzer")
 
-# Player Type selection
-player_type = st.selectbox("Select Player Type", ["Pitcher", "Hitter"])
+# Sidebar for filters
+with st.sidebar:
+    # Player Type selection
+    player_type = st.selectbox("Select Player Type", ["Pitcher", "Hitter"])
 
-# Add the ORG filter with 'All' option
-org_options = ['All'] + df['ORG'].unique().tolist()  # Add 'All' to the list of organizations
-org_filter = st.selectbox("Select Organization", org_options)
+    # Add the ORG filter with 'All' option
+    org_options = ['All'] + df['ORG'].unique().tolist()  # Add 'All' to the list of organizations
+    org_filter = st.selectbox("Select Organization", org_options)
+
+    # Age filter (Slider)
+    age_filter = st.slider("Select Age Range", min_value=16, max_value=40, value=(16, 40))
+
+    # Position filter (Multi-select based on Player Type)
+    if player_type == "Pitcher":
+        pos_options = ['SP', 'RP', 'CL']
+    elif player_type == "Hitter":
+        pos_options = ['C', '1B', '2B', '3B', 'SS', 'RF', 'CF', 'LF']
+
+    pos_filter = st.multiselect("Select Position(s)", pos_options, default=pos_options)
 
 # Filter the DataFrame based on Player Type
+filtered_df = df[df['Player Type'] == player_type]
+
+# Apply ORG filter if not 'All'
+if org_filter != 'All':
+    filtered_df = filtered_df[filtered_df['ORG'] == org_filter]
+
+# Apply Age filter
+filtered_df = filtered_df[filtered_df['Age'].between(age_filter[0], age_filter[1])]
+
+# Apply POS filter based on selected positions
+filtered_df = filtered_df[filtered_df['POS'].isin(pos_filter)]
+
+# Display the filtered data
 if player_type == "Pitcher":
     st.write("Pitcher Information:")
     pitcher_columns = ['POS', 'Name', 'ORG', 'Lev', 'Age', 'T', 'OVR', 'POT', 'WE', 'INT', 'G/F', 'VELO', 
                        'STM', 'Pitcher Current', 'Pitcher Potential', 'Pitch % Developed', '#50P', '#60P', '#70P']
     
     # Filter data to show only Pitchers
-    pitcher_data = df[df['Player Type'] == 'Pitcher'][pitcher_columns]
-
-    # Apply ORG filter if not 'All'
-    if org_filter != 'All':
-        pitcher_data = pitcher_data[pitcher_data['ORG'] == org_filter]
-
+    pitcher_data = filtered_df[pitcher_columns]
     st.write(pitcher_data)
 
 elif player_type == "Hitter":
@@ -52,10 +73,5 @@ elif player_type == "Hitter":
                       'Hit Potential', 'Hit % Developed', 'Exit Velocity', 'EV Potential', 'Defence']
     
     # Filter data to show only Hitters
-    hitter_data = df[df['Player Type'] == 'Hitter'][hitter_columns]
-
-    # Apply ORG filter if not 'All'
-    if org_filter != 'All':
-        hitter_data = hitter_data[hitter_data['ORG'] == org_filter]
-
+    hitter_data = filtered_df[hitter_columns]
     st.write(hitter_data)
