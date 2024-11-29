@@ -29,6 +29,9 @@ def determine_player_type(pos):
 # Add the Player Type column based on the POS column
 df['Player Type'] = df['POS'].apply(determine_player_type)
 
+# Fill missing 'Defence' values for Pitchers with 'Not Applicable'
+df['Defence'] = df['Defence'].fillna("0")
+
 # Streamlit app
 st.title("Baseball Player Stats Analyzer")
 
@@ -73,7 +76,6 @@ elif player_type == "Hitter":
     st.write("Hitter Information:")
     hitter_columns = ['POS', 'Name', 'ORG', 'Lev', 'Age', 'B', 'T', 'OVR', 'POT', 'WE', 'INT', 
                   'Hit Ability', 'Hit Potential', 'Hit % Developed', 'Exit Velocity', 'EV Potential', 'Defence']
-
     
     hitter_data = filtered_df[hitter_columns]
     st.dataframe(hitter_data, use_container_width=True)  # Expands the table to fit the container width
