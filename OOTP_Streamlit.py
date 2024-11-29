@@ -67,7 +67,7 @@ if player_type == "Pitcher":
                        'STM', 'Pitcher Current', 'Pitcher Potential', 'Pitch % Developed', '#50P', '#60P', '#70P']
     
     pitcher_data = filtered_df[pitcher_columns]
-    st.write(pitcher_data)
+    st.dataframe(pitcher_data, use_container_width=True)  # Expands the table to fit the container width
 
 elif player_type == "Hitter":
     st.write("Hitter Information:")
@@ -75,4 +75,4 @@ elif player_type == "Hitter":
                       'Hit Potential', 'Hit % Developed', 'Exit Velocity', 'EV Potential']
     
     hitter_data = filtered_df[hitter_columns]
-    st.write(hitter_data)
+    st.dataframe(hitter_data, use_container_width=True)  # Expands the table to fit the container width
