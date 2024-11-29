@@ -18,7 +18,7 @@ df = load_data()
 # Define the function to categorize players based on position
 def determine_player_type(pos):
     pitcher_positions = ['SP', 'RP', 'CL']
-    hitter_positions = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF', 'DH']
+    hitter_positions = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF',]
     if pos in pitcher_positions:
         return 'Pitcher'
     elif pos in hitter_positions:
