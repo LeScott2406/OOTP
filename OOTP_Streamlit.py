@@ -38,8 +38,12 @@ with st.sidebar:
     org_options = ['All'] + df['ORG'].unique().tolist()
     org_filter = st.selectbox("Select Organization", org_options)
     
-    # Filter by POS (Position)
-    pos_options = ['All'] + df['POS'].unique().tolist()
+    # Filter by POS (Position) - show based on Player Type
+    if player_type == "Pitcher":
+        pos_options = ['All'] + ['SP', 'RP', 'CL']
+    else:
+        pos_options = ['All'] + ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']
+    
     pos_filter = st.selectbox("Select Position", pos_options)
     
     # Filter by Age
