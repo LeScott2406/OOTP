@@ -34,7 +34,7 @@ data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/FA.xlsx'
 df = load_and_prepare_data(data_url)
 
 # Streamlit app
-st.title("All MLB Players")
+st.title("Free Agency")
 
 # Sidebar for filters
 with st.sidebar:
