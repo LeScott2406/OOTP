@@ -1,25 +1,31 @@
 import streamlit as st
 import pandas as pd
 
-# Load the Excel file from the URL
+# Function to load and preprocess the data
+@st.cache_data
+def load_and_prepare_data(url):
+    # Read the Excel file from the URL
+    df = pd.read_excel(url)
+
+    # Define the function to categorize players based on position
+    def determine_player_type(pos):
+        pitcher_positions = ['SP', 'RP', 'CL']
+        hitter_positions = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']
+        if pos in pitcher_positions:
+            return 'Pitcher'
+        elif pos in hitter_positions:
+            return 'Hitter'
+        else:
+            return 'Unknown'
+
+    # Add the Player Type column
+    df['Player Type'] = df['POS'].apply(determine_player_type)
+
+    return df
+
+# Load data once
 data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/MLB.xlsx'
-
-# Read the data into a pandas DataFrame
-df = pd.read_excel(data_url)
-
-# Define the function to categorize players based on position
-def determine_player_type(pos):
-    pitcher_positions = ['SP', 'RP', 'CL']
-    hitter_positions = ['C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']
-    if pos in pitcher_positions:
-        return 'Pitcher'
-    elif pos in hitter_positions:
-        return 'Hitter'
-    else:
-        return 'Unknown'
-
-# Add the Player Type column based on the POS column
-df['Player Type'] = df['POS'].apply(determine_player_type)
+df = load_and_prepare_data(data_url)
 
 # Streamlit app
 st.title("All MLB Players")
