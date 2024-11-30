@@ -30,7 +30,7 @@ def load_and_prepare_data(url):
     return df
 
 # Load data once
-data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/MLB.xlsx'
+data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/FA.xlsx'
 df = load_and_prepare_data(data_url)
 
 # Streamlit app
