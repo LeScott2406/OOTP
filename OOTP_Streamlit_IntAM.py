@@ -8,7 +8,7 @@ import streamlit as st
 import pandas as pd
 
 # Load the Excel file from the URL
-data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/MLB.xlsx'
+data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/IntAmateur.xlsx'
 
 # Read the data into a pandas DataFrame
 df = pd.read_excel(data_url)
