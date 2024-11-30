@@ -28,7 +28,7 @@ def determine_player_type(pos):
 df['Player Type'] = df['POS'].apply(determine_player_type)
 
 # Streamlit app
-st.title("All MLB Players")
+st.title("International Amateurs")
 
 # Sidebar for filters
 with st.sidebar:
