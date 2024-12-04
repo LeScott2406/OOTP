@@ -41,10 +41,6 @@ with st.sidebar:
     # Player Type selection
     player_type = st.selectbox("Select Player Type", ["Pitcher", "Hitter"])
 
-    # Add the ORG filter with 'All' option
-    org_options = ['All'] + df['ORG'].unique().tolist()  # Add 'All' to the list of organizations
-    org_filter = st.selectbox("Select Organization", org_options)
-
     # Age filter (Slider)
     age_filter = st.slider("Select Age Range", min_value=16, max_value=40, value=(16, 40))
 
