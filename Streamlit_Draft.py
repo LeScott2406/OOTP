@@ -55,10 +55,6 @@ with st.sidebar:
 # Filter the DataFrame based on Player Type
 filtered_df = df[df['Player Type'] == player_type]
 
-# Apply ORG filter if not 'All'
-if org_filter != 'All':
-    filtered_df = filtered_df[filtered_df['ORG'] == org_filter]
-
 # Apply Age filter
 filtered_df = filtered_df[filtered_df['Age'].between(age_filter[0], age_filter[1])]
 
