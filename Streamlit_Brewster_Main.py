@@ -73,7 +73,7 @@ filtered_df = filtered_df[filtered_df['POS'].isin(pos_filter)]
 if player_type == "Pitcher":
     st.write("Pitcher Information:")
     pitcher_columns = ['POS', 'Name', 'ORG', 'Lev', 'Age', 'T', 'OVR', 'POT', 'WE', 'INT', 'G/F', 'VELO', 
-                       'STM', 'Pitcher Current', 'Pitcher Potential', 'Pitch % Developed', '#50P', '#60P', '#70P']
+                       'STM', 'Pitcher Current', 'Pitcher Potential', 'Pitch % Developed', '#5P', '#7P', '#9P']
     
     # Filter data to show only Pitchers
     pitcher_data = filtered_df[pitcher_columns]
