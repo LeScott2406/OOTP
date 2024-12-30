@@ -34,7 +34,7 @@ data_url = 'https://github.com/LeScott2406/OOTP/raw/refs/heads/main/MLB.xlsx'
 df = load_and_prepare_data(data_url)
 
 # Streamlit app
-st.title("All GBC Players")
+st.title("All MLBC Players")
 
 # Sidebar for filters
 with st.sidebar:
