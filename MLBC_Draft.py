@@ -79,7 +79,7 @@ if player_type == "Pitcher":
 
 elif player_type == "Hitter":
     st.write("Hitter Information:")
-    hitter_columns = ['POS', 'Name', 'ORG', 'Age', 'B', 'T', 'OVR', 'POT', 'WE', 'INT', 'Hit Ability', 
+    hitter_columns = ['POS', 'Name', 'Age', 'B', 'T', 'OVR', 'POT', 'WE', 'INT', 'Hit Ability', 
                       'Hit Potential', 'Hit % Developed', 'Exit Velocity', 'EV Potential', 'Defence']
     
     # Filter data to show only Hitters
