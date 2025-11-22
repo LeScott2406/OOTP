@@ -64,8 +64,8 @@ filtered_df = filtered_df[filtered_df['POS'].isin(pos_filter)]
 # Display the filtered data
 if player_type == "Pitcher":
     st.write("Pitcher Information:")
-    pitcher_columns = ['POS', 'Name', 'Lev', 'Age', 'T', 'OVR', 'POT', 'WE', 'INT', 'G/F', 'VELO', 
-                       'STM', 'Pitcher Current', 'Pitcher Potential', 'Pitch % Developed', '#50P', '#60P', '#70P']
+    pitcher_columns = ['POS', 'Name', 'Lev', 'Age', 'T', 'OVR', 'POT', 'WE', 'INT', 'G/F', 'VT', 
+                       'STM', 'Pitcher Current', 'Pitcher Potential', 'Pitch % Developed', '#50P', '#60P', '#70P', 'DraftScore_Percentile', 'DraftTier']
     
     # Filter data to show only Pitchers
     pitcher_data = filtered_df[pitcher_columns]
@@ -74,7 +74,7 @@ if player_type == "Pitcher":
 elif player_type == "Hitter":
     st.write("Hitter Information:")
     hitter_columns = ['POS', 'Name', 'ORG', 'Lev', 'Age', 'B', 'T', 'OVR', 'POT', 'WE', 'INT', 'Hit Ability', 
-                      'Hit Potential', 'Hit % Developed', 'Exit Velocity', 'EV Potential', 'Defence']
+                      'Hit Potential', 'Hit % Developed', 'Exit Velocity', 'EV Potential', 'Defence', 'DraftScore_Percentile', 'DraftTier']
     
     # Filter data to show only Hitters
     hitter_data = filtered_df[hitter_columns]
